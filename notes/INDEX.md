@@ -45,3 +45,6 @@ This folder contains a comprehensive guide to building a Retrieval-Augmented Gen
 
 14. [Chapter 14: State-of-the-Art - Hybrid Search and Streaming](chapter-14.md)
     Concepts: Ensemble Retrievers, Directory Loading, Streaming.
+
+15. [Chapter 15: The Master RAG - Re-writing and Self-Correction](chapter-15.md)
+    Concepts: Query Transformation, Post-Processing, Anti-Hallucination.
