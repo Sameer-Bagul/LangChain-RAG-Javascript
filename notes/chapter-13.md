@@ -2,6 +2,19 @@
 
 In-memory storage is not persistent. If you restart the application, you lose your embeddings. This step introduces a real Vector Database.
 
+## Architectural Diagram
+
+```mermaid
+graph LR
+    subgraph Node.js App
+        Loader --> Splitter
+        Splitter --> ChromaClient
+    end
+    subgraph External Infrastructure
+        ChromaClient <--> ChromaDB[(ChromaDB Docker)]
+    end
+```
+
 ## Objects and Classes
 
 - **Chroma**: Imported from `@langchain/community/vectorstores/chroma`. This class allows the application to communicate with a ChromaDB server.

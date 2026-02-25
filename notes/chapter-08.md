@@ -2,6 +2,18 @@
 
 This step introduces "Chains"—the core of LangChain's philosophy. A chain "links" different components together in a sequence.
 
+## Architectural Diagram
+
+```mermaid
+graph TD
+    User[User Query] --> Chain[RetrievalQAChain]
+    subgraph Chain Internal
+        Chain --> R[Retriever]
+        R --> LLM[Language Model]
+    end
+    LLM --> Answer[Final Answer]
+```
+
 ## Objects and Classes
 
 - **RetrievalQAChain**: A pre-built class that combines an LLM and a Retriever into a single object.

@@ -2,6 +2,20 @@
 
 The basic `CharacterTextSplitter` cuts at a fixed point. This can often leave related information in two different chunks. We optimize this with a recursive strategy.
 
+## Architectural Diagram
+
+```mermaid
+graph TD
+    A[Raw Document] --> B{Try "\n\n"}
+    B -- No --> C{Try "\n"}
+    C -- No --> D{Try " "}
+    D -- No --> E{Try ""}
+    B -- Yes --> F[Paragraph Chunks]
+    C -- Yes --> G[Sentence Chunks]
+    D -- Yes --> H[Word Chunks]
+    E -- Yes --> I[Character Chunks]
+```
+
 ## Objects and Classes
 
 - **RecursiveCharacterTextSplitter**: This is the recommended text splitter for most use cases.

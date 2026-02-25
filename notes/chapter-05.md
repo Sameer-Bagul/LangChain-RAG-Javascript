@@ -2,6 +2,16 @@
 
 LLMs have a limited "context window," which means they can't process a huge document all at once. We must break the text into smaller, manageable chunks.
 
+## Architectural Diagram
+
+```mermaid
+graph TD
+    A[Large Document] --> B{Text Splitter}
+    B -- "Size: 1000" --> C[Chunk 1]
+    B -- "Overlap: 0" --> D[Chunk 2]
+    B --> E[Chunk n...]
+```
+
 ## Objects and Classes
 
 - **CharacterTextSplitter**: This class handles the logic of dividing long strings into smaller segments.

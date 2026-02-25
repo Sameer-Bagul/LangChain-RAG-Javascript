@@ -2,6 +2,17 @@
 
 This step demonstrates how to actually use the initialized LLM to generate a response.
 
+## Architectural Diagram
+
+```mermaid
+sequenceDiagram
+    participant App
+    participant Ollama
+    App->>Ollama: invoke("Query")
+    Note over Ollama: Processing Tokens
+    Ollama-->>App: "Response String"
+```
+
 ## Objects and Classes
 
 - **Asynchronous Methods (`async/await`)**: We modify `initChatModel` to be `async`. Since talking to an LLM takes time (it is an I/O operation), we must use `await` to prevent the code from moving forward before the answer is ready.

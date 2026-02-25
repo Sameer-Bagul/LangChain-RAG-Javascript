@@ -2,6 +2,19 @@
 
 In this first step, we establish the foundation of our application using Object-Oriented Programming (OOP) principles in JavaScript.
 
+## Architectural Diagram
+
+```mermaid
+classDiagram
+    class PdfQA {
+        +constructor()
+    }
+    class App {
+        +new PdfQA()
+    }
+    App --> PdfQA : Instantiates
+```
+
 ## Objects and Classes
 
 The primary structure we use is a class named `PdfQA`. 

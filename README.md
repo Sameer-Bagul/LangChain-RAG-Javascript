@@ -40,12 +40,23 @@ To ensure that you have successfully downloaded and installed all of the above, 
 
 - Since both the `RetrievalQAChain` (JavaScript version) and `RetrievalQA` (Python version) have been deprecated in the latest versions of LangChain, the final version of the code contains a different implementation that makes it up-to-date and in accordance with the latest specs. Nevertheless, an example using `RetrievalQAChain` can still be found in this repo for an easy comparison between the JS and the Python code as demoed by Jodie Burchell in her presentation.
 
+## Step-by-Step Learning Guide
+
+This repository now includes a structured learning path to help you build the RAG application from the ground up:
+
+* **[Step-by-Step Tutorials](./step-by-step/)**: 14 progressive JavaScript files moving from a simple class to a production-grade RAG pipeline.
+* **[Architectural Notes](./notes/INDEX.md)**: Comprehensive documentation for each step, including:
+    * **Deep Dives**: Structural and architectural background for every component.
+    * **Visual Diagrams**: Mermaid flowcharts, sequence diagrams, and class diagrams for every chapter.
+    * **State-of-the-Art Features**: Coverage of Hybrid Search, Streaming, and persistent Vector Databases.
+
 ## Usage
 
 - `git clone https://github.com/in-tech-gration/simple-rag-document-qa.git`
 - `cd simple-rag-document-qa`
 - `npm install`
-- `node rag-pdf-qa.js`
+- **Standard**: `node rag-pdf-qa.js`
+- **Advanced (v0.3)**: `cd v0.3 && node extras-step-14.js`
 
 ## Repository contents
 
@@ -53,8 +64,11 @@ This repository contains the following material:
 
 **JavaScript Branch:**
 
-* `rag-pdf-qa.js` contains the code for the simple RAG pipeline. There are extensive comments in the code to help you understand how to adapt this for your own use case.
-* `talk-materials/talk-sources.md` contains all of the papers and other sources Jodie Burchell used for her talk. It also contains all of her image credits.
+* `rag-pdf-qa.js`: The primary code for the standard RAG pipeline.
+* `step-by-step/`: Folder containing 14 progressive development steps.
+* `notes/`: Detailed architectural notes and visual diagrams for the step-by-step guide.
+* `v0.3/`: Advanced implementations using LangChain v0.3 (Hybrid Search, Streaming).
+* `talk-materials/talk-sources.md` contains all of the papers and other sources Jodie Burchell used for her talk.
 * `talk-materials/beyond-the-hype.pdf` contains a copy of her slides.
 
 ## Troubleshooting
@@ -78,7 +92,68 @@ The repo contains the following materials for Jodie Burchell's talk delivered at
   > "TypeError [ERR_INVALID_ARG_TYPE]: The "path" argument must be of type string. Received undefined"
   - "This may be related to your Node.js version. The problem was resolved after upgrading from Node 18.17.0 to Node 20.17.0." _(Thanks to @rogerthao588 for sharing this issue with us)_
 
-## Todo
+## Roadmap
 
-- [ ] Migrate to version **v0.3** of `LangChain`
-  - [x] Created folder `v0.3` that includes a variation of `step-10.js` ported to version `v0.3`. 
+- [x] Migrate to version **v0.3** of `LangChain`
+- [x] Create step-by-step tutorial files
+- [x] Create detailed architectural notes with Mermaid diagrams
+- [x] Implement Hybrid Search and Streaming
+- [ ] Add Agentic RAG capabilities
+
+---
+
+## Master Advanced RAG Architecture (2025 Best Practices)
+
+While this repository covers the fundamental steps, professional enterprise-grade RAG systems (State-of-the-Art) operate with a much more complex "Modular & Agentic" pipeline. Below is the blueprint of what happens "under the hood" in high-performance AI systems.
+
+### Under the Hood: The Enterprise RAG Lifecycle
+
+```mermaid
+flowchart TD
+    subgraph Ingestion_Phase [1. Intelligent Ingestion]
+        Data[(Multi-Modal Data)] --> Chunker{Adaptive Chunker}
+        Chunker --> KG[Knowledge Graph]
+        Chunker --> Embed[Domain-Specific Embeddings]
+        KG & Embed --> DB[(Hybrid Vector Store)]
+    end
+
+    subgraph Pre_Retrieval [2. Query Understanding]
+        UserQ([User Question]) --> Agent{Agent Controller}
+        Agent --> Rewrite[Query Re-writing]
+        Agent --> Decomp[Query Decomposition]
+        Agent --> HyDE[Hypothetical Doc Embeddings]
+    end
+
+    subgraph Retrieval_Phase [3. Hybrid Retrieval]
+        Rewrite & Decomp & HyDE --> Search
+        Search --> Semantic[Vector Search]
+        Search --> Keyword[BM25/Fuzzy Search]
+        Search --> Graph[Graph Traversal]
+        Semantic & Keyword & Graph --> RRF[Reciprocal Rank Fusion]
+    end
+
+    subgraph Post_Retrieval [4. Result Refining]
+        RRF --> Rerank[Cross-Encoder Re-ranking]
+        Rerank --> Compress[Context Compression]
+        Compress --> Prompt[Chain-of-Thought Prompting]
+    end
+
+    subgraph Generation_Phase [5. Synthesis & Guardrails]
+        Prompt --> LLM[Large Language Model]
+        LLM --> Hallucination[Self-Correction Loop]
+        Hallucination --> Guard[Safety Guardrails]
+        Guard --> Final[Final Verified Answer]
+    end
+
+    Final --> Eval[RAGAS Evaluation]
+    Eval -.-> Feedback[Continuous Improvement]
+    Feedback -.-> Agent
+```
+
+### Advanced Tech & Best Practices
+1. **Query Transformation (Pre-Retrieval)**: Instead of searching the raw question, advanced systems rewrite the query to be more "searchable" or generate a "Hypothetical Document" (HyDE) to find actual answers better.
+2. **Hybrid & Graph Search**: Combining semantic vectors with keyword search and **Knowledge Graphs** allows the system to understand both "meaning" and "factual relationships."
+3. **Cross-Encoder Re-ranking**: Initial retrieval finds 100 docs quickly, but a sophisticated "Re-ranker" evaluates them deeply to pick the top 5, significantly reducing hallucinations.
+4. **Context Compression**: Instead of sending full chunks to the LLM, we extract only the relevant sentences to save tokens and improve focus.
+5. **Self-Correction & Guardrails**: The model "checks its own work" (Hallucination check) against the source before the user ever sees the answer.
+6. **Agentic Loops**: The system isn't a straight line. If the first search fails, an **Agent Controller** decides to search again with a different strategy or ask the user for clarification.

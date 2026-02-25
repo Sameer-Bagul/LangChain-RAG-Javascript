@@ -2,6 +2,17 @@
 
 A standard RAG chain is "stateless"—it forgets what was said as soon as the function finishes. This step introduces simple memory.
 
+## Architectural Diagram
+
+```mermaid
+graph TD
+    User([New Question]) --> History[Chat History Array]
+    History --> Chain[RAG Chain]
+    Chain --> Answer([Assistant Response])
+    Answer --> NewHistory[Update History]
+    NewHistory -.-> User
+```
+
 ## Objects and Classes
 
 - **`chat_history`**: This isn't a single class, but a pattern. We pass an array of previous messages back into the chain.

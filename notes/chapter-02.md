@@ -2,6 +2,20 @@
 
 In this step, we integrate the Large Language Model (LLM) into our class structure using the LangChain library and Ollama.
 
+## Architectural Diagram
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant PdfQA
+    participant Ollama
+    User->>PdfQA: new PdfQA({ model })
+    User->>PdfQA: init()
+    PdfQA->>PdfQA: initChatModel()
+    PdfQA->>Ollama: Initialize Connection
+    PdfQA-->>User: returns this
+```
+
 ## Objects and Classes
 
 - **Ollama Class**: Imported from `@langchain/ollama`, this class provides a standard interface to interact with models running locally via Ollama. 

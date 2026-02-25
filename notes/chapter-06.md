@@ -2,6 +2,15 @@
 
 To perform a "search" based on meaning (rather than just keywords), we must convert text into numbers. This process is called Vectorization.
 
+## Architectural Diagram
+
+```mermaid
+graph LR
+    A[Text Chunks] --> B[Embedding Model]
+    B --> C[Vector Array]
+    C --> D[(Memory Vector Store)]
+```
+
 ## Objects and Classes
 
 - **OllamaEmbeddings**: This class connects to an embedding model (like `all-minilm`) to transform text chunks into "vectors" (mathematical arrays of numbers).

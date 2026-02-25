@@ -2,6 +2,16 @@
 
 A "Retriever" is a specialized object that knows how to find documents given a string query. It is a level of abstraction over the raw database.
 
+## Architectural Diagram
+
+```mermaid
+graph LR
+    User[Query String] --> R[Retriever]
+    R --> DB[(Vector Store)]
+    DB --> R
+    R --> Docs[Top K Documents]
+```
+
 ## Objects and Classes
 
 - **Retriever Object**: We create this by calling `this.db.asRetriever()`.

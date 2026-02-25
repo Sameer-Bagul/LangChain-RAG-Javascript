@@ -2,6 +2,21 @@
 
 The `RetrievalQAChain` (Chapter 8) is being phased out in favor of a more flexible, pipe-able architecture using the LCEL (LangChain Expression Language) style.
 
+## Architectural Diagram
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Retriever
+    participant Prompt
+    participant LLM
+    User->>Retriever: Query String
+    Retriever-->>Prompt: Context (Docs)
+    User->>Prompt: User Input
+    Prompt->>LLM: Formatted Prompt
+    LLM-->>User: Final Answer
+```
+
 ## Objects and Classes
 
 - **ChatPromptTemplate**: Allows us to define a structured template for the LLM. It must include placeholders like `{context}` and `{input}`.

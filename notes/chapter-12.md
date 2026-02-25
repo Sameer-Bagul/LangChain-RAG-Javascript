@@ -2,6 +2,19 @@
 
 In this step, we upgrade our embedding model and our retrieval strategy to improve the accuracy and diversity of results.
 
+## Architectural Diagram
+
+```mermaid
+graph TD
+    Q[Query] --> Fetch[Fetch K=200 Docs]
+    subgraph MMR Logic
+        Fetch --> Sim[Measure Similarity]
+        Sim --> Div[Measure Diversity from Selected]
+        Div --> Final[Rank by Similarity - Diversity]
+    end
+    Final --> Return[Return Top K Chunks]
+```
+
 ## Objects and Classes
 
 - **`nomic-embed-text`**: We switch from `all-minilm` to a more modern and powerful embedding model from Nomic. It has a larger context window and better mathematical representation of text.
