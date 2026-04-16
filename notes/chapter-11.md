@@ -6,10 +6,10 @@ The basic `CharacterTextSplitter` cuts at a fixed point. This can often leave re
 
 ```mermaid
 graph TD
-    A[Raw Document] --> B{Try "\n\n"}
-    B -- No --> C{Try "\n"}
-    C -- No --> D{Try " "}
-    D -- No --> E{Try ""}
+    A[Raw Document] --> B{Try \\n\\n}
+    B -- No --> C{Try \\n}
+    C -- No --> D{Try space}
+    D -- No --> E{Try empty}
     B -- Yes --> F[Paragraph Chunks]
     C -- Yes --> G[Sentence Chunks]
     D -- Yes --> H[Word Chunks]
