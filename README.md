@@ -2,6 +2,8 @@
 
 A complete, professional-grade learning path for building Retrieval-Augmented Generation (RAG) applications from scratch using **Node.js**, **LangChain**, and **Ollama**.
 
+![LangChain RAG Notes](./langchain-rag.png)
+
 ---
 
 ## 🚀 The Learning Journey
